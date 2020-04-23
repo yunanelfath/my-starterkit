@@ -5,6 +5,9 @@ export const routerPath = {
   signin: {
     root: '/users/signin'
   },
+  search: {
+    root: '/search',
+  },
   news: {
     detail: "/news/:id",
   },

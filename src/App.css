@@ -82,3 +82,48 @@
   width: 100%;
   border-top: 1px solid #ebebeb;
 }
+.MuiGridList-root{
+  margin-bottom: 50px !important;
+}
+.MuiGridListTile-root{
+  margin: 15px auto;
+  border: 2px solid #ebebeb;
+  border-radius: 5px;
+  min-width: 90vw;
+}
+.MuiGridListTile-tile img{
+  min-width: 325px;
+  min-height: 150px;
+  width: 325px;
+  height: 150px;
+}
+.search-box{
+  margin: 20px 25px;
+}
+
+.category-box{
+  margin: 0 auto;
+  display: flex;
+  overflow-x: scroll;
+  width: 90vw;
+}
+.category-box .box{
+  display: initial;
+  margin: 0 30px;
+}
+.category-box .box:first-child{
+  margin: 0;
+}
+.category-box .box .name{
+  display: block;
+  text-align: center;
+}
+.category-box .box .img{
+  display: flex;
+  width: 60px;
+  height: 60px;
+}
+.category-box .box .img img{
+  width: 100%;
+  height: 100%;
+}

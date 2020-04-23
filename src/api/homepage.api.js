@@ -37,7 +37,9 @@ export function apiGetHomepage(){
       }else{
 
         customAxios
-        .get(url)
+        .get(url, {
+          page: 1
+        })
         .then(response => {
           resolve({ response: response.data })
         })

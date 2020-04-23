@@ -1,7 +1,9 @@
 import * as constants from './news.constant'
 
 let defaultState = {
-  items: false,
+  categoryItems: [],
+  items: [],
+  didMountHomepage: false,
   didMount: false,
 }
 const ACTION_HANDLERS = {
