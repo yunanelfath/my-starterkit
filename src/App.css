@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.black-bgcolor{
+  background-color: #424242 !important;
+}
+.blue-fb{
+  background-color: #3a5898 !important;
+}
+
+.blue-google{
+  background-color: #2196f3 !important;
+}
+
+.text-transform-capitalize{
+  text-transform: capitalize !important;
+}
+
+.padding-container.login{
+  margin-top: 20vh;
+}
+.full-width{
+  width: 100%;
+}
+.display-inline-block{
+  display: inline-block;
+}
+.display-flex{
+  display: flex;
+}
+.text-center{
+  text-align: center;
+}
