@@ -1,7 +1,9 @@
 import React from 'react';
+import BottomNavigation from 'components/BottomNavigation'
 
 function App() {
   return (
+    <>
     <div className="App">
       <header className="App-header">
         <p>
@@ -10,6 +12,8 @@ function App() {
         ini homepage
       </header>
     </div>
+    <BottomNavigation />
+    </>
   );
 }
 

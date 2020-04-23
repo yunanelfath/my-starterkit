@@ -76,3 +76,9 @@
   right: 0;
   padding: 15px;
 }
+.MuiBottomNavigation-root{
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  border-top: 1px solid #ebebeb;
+}
