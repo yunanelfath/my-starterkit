@@ -1,7 +1,7 @@
 import React from 'react';
 // import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -14,12 +14,40 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Facebook from '@material-ui/icons/Facebook';
 import DeleteIcon from '@material-ui/icons/GitHub';
+import {
+  apiPostLogin
+} from 'api/login.api'
+import {
+  routerPath
+} from 'router/Routerlist'
+import { withRouter } from "react-router";
+import Loading from 'components/Loading/index'
 
-export default function SignIn() {
+const SignIn = (props) => {
+  const [ isLoading, setLoading ] = React.useState(false)
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault()
+    const {
+      history,
+    } = props
+
+    setLoading(true)
+    let payload = {
+      username: e.target.querySelector('input#username').value,
+      password: e.target.querySelector('input#password').value
+    }
+    await apiPostLogin(payload).then((e)=>{
+      setLoading(false)
+      setTimeout(()=>{
+
+        history.push(routerPath.homepage.root)
+      },300)
+    })
+  }
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className="padding-container login">
         <div className="text-center">
 
@@ -28,7 +56,7 @@ export default function SignIn() {
           </Typography>
         </div>
 
-        <form noValidate>
+        <form noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -60,7 +88,7 @@ export default function SignIn() {
             </Grid>
             <Grid item>
               <Button
-                type="button"
+                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
@@ -72,7 +100,7 @@ export default function SignIn() {
           </Grid>
           <br/>
           <Button
-            type="button"
+            type="submit"
             fullWidth
             variant="contained"
             color="primary"
@@ -84,7 +112,7 @@ export default function SignIn() {
           <br/>
           <br/>
           <Button
-            type="button"
+            type="submit"
             fullWidth
             variant="contained"
             color="primary"
@@ -95,6 +123,8 @@ export default function SignIn() {
           </Button>
         </form>
       </div>
+      <Loading open={isLoading}/>
     </Container>
   );
 }
+export default withRouter(SignIn)

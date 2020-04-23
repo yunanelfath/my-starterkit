@@ -67,3 +67,12 @@
 .text-center{
   text-align: center;
 }
+.hide{
+  display: none !important;
+}
+.loading{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+}
