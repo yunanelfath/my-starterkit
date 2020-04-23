@@ -121,7 +121,7 @@ class Homepage extends React.Component {
           })}
         </GridList>
       </div>
-      <BottomNavigation active={0}/>
+      <BottomNavigation active={'home'}/>
       </>
     );
   }
