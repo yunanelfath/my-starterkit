@@ -1,5 +1,5 @@
 import React from 'react';
-// import Backdrop from '@material-ui/core/Backdrop';
+import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import classNames from 'classnames'
 
@@ -14,7 +14,9 @@ export default (props) => {
       'hide': open ? false : true,
       'loading': true,
     })}>
-      <CircularProgress color="primary" />
+      <Backdrop open={open}>
+        <CircularProgress color="primary" />
+      </Backdrop>
     </div>
   )
 }
