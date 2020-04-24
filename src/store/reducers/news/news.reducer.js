@@ -3,6 +3,8 @@ import * as constants from './news.constant'
 let defaultState = {
   categoryItems: [],
   items: [],
+  detail: null,
+  purchaseItems: [],
   didMountHomepage: false,
   didMount: false,
 }

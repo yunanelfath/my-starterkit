@@ -127,3 +127,26 @@
   width: 100%;
   height: 100%;
 }
+.detail-news{
+  padding: 0 20px;
+  margin: 10px 0;
+}
+.detail-news .top{
+  border: 1px solid #000;
+}
+.detail-news .top img{
+  width: 100%;
+}
+.detail-news .title{
+  padding-top: 10px;
+  font-weight: bold;
+}
+.detail-news .action{
+  margin: 25px 0;
+  text-align: right;
+}
+.detail-news .action span{
+  padding: 3px 20px;
+  border: 1px solid #000;
+  margin-left: 20px;
+}

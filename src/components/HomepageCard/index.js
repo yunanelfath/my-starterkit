@@ -6,6 +6,10 @@ import IconButton from '@material-ui/core/IconButton';
 import InactiveIcon from '@material-ui/icons/FavoriteBorder';
 import ActiveIcon from '@material-ui/icons/FavoriteSharp';
 // import classNames from 'classnames'
+import { Link } from "react-router-dom";
+import {
+  routerPath
+} from 'router/Routerlist'
 
 export default (props) => {
   const {
@@ -14,6 +18,7 @@ export default (props) => {
 
   return (
     <GridListTile key={tile.img}>
+      <Link to={routerPath.news.detail.replace(/:id/g, tile.id)}>
       <img src={tile.img} alt={tile.title} />
       <GridListTileBar
         title={tile.title}
@@ -32,6 +37,7 @@ export default (props) => {
           </IconButton>
         }
       />
+      </Link>
     </GridListTile>
   )
 }
