@@ -9,6 +9,7 @@ import { routerPath } from "./Routerlist";
 import Homepage from 'views/Homepage'
 import NewsDetail from 'views/News/Detail'
 import PurchaseHistory from 'views/Purchase/History'
+import Search from 'views/Search'
 import SignIn from 'views/Signin'
 
 
@@ -27,6 +28,11 @@ const RouterPath = () => {
         <Route
           path={routerPath.homepage.root}
           component={Homepage}
+          exact
+        />
+        <Route
+          path={routerPath.search.root}
+          component={Search}
           exact
         />
         <Route

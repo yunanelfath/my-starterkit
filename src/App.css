@@ -165,3 +165,13 @@
   margin-right: 15px;
   padding: 10px;
 }
+
+.search-box.search-page{
+  margin: 0px 20px 0px 0px;
+}
+.search-box.search-page .MuiOutlinedInput-inputAdornedStart{
+  height: 5px !important;
+}
+.top-container{
+  margin: 20px 0px;
+}
