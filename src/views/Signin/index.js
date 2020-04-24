@@ -22,15 +22,20 @@ import {
 } from 'router/Routerlist'
 import { withRouter } from "react-router";
 import Loading from 'components/Loading/index'
+import { connect } from 'react-redux'
+import {
+  actionToProps as authAction
+} from 'store/reducers/auth/auth.action'
 
 const SignIn = (props) => {
   const [ isLoading, setLoading ] = React.useState(false)
+  const {
+    history,
+    changeAuthAttribute
+  } = props
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
-    const {
-      history,
-    } = props
 
     setLoading(true)
     let payload = {
@@ -39,6 +44,10 @@ const SignIn = (props) => {
     }
     await apiPostLogin(payload).then((e)=>{
       setLoading(false)
+      changeAuthAttribute({
+        key: 'authenticated',
+        value: true,
+      })
       setTimeout(()=>{
 
         history.push(routerPath.homepage.root)
@@ -127,4 +136,11 @@ const SignIn = (props) => {
     </Container>
   );
 }
-export default withRouter(SignIn)
+const mapStateToProps = (state) => {
+    return {
+      auth: state.auth,
+      news: state.news,
+    }
+}
+const mapDispatchToProps = {...authAction}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignIn))

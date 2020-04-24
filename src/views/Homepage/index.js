@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomNavigation from 'components/BottomNavigation'
 import {
   apiGetHomepage
 } from 'api/homepage.api'
 import GridList from '@material-ui/core/GridList';
-import { connect } from 'react-redux'
 import { withRouter } from "react-router";
 import {
   routerPath
 } from 'router/Routerlist'
+import { connect } from 'react-redux'
 import {
   actionToProps as newsAction
 } from 'store/reducers/news/news.action'
@@ -17,30 +17,35 @@ import CategoryCard from 'components/CategoryCard'
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Loading from 'components/Loading'
 
-class Homepage extends React.Component {
-  // constructor(props){
-  //   super(props)
-  // }
-  async componentDidMount(){
+const Homepage = (props) => {
+  const [isLoading, setLoading] = useState(false)
     const {
       changeNewsAttribute,
+      history,
+      auth: {
+        authenticated
+      },
       news: {
         items,
         categoryItems,
         didMountHomepage,
       }
-    } = this.props
+    } = props
 
-    if(!didMountHomepage){
+  useEffect(()=>{
 
+    const fetchHomepage = async () =>{
+      setLoading(true)
       await apiGetHomepage().then((e)=>{
         const {
           response
         } = e
-        // console.log(response[0]);
-        let updateItems = items
-        let updateCategoryItems = categoryItems
+
+        let updateItems = []
+        let updateCategoryItems = []
+        setLoading(false)
 
         changeNewsAttribute({
           key: 'items',
@@ -60,15 +65,13 @@ class Homepage extends React.Component {
 
       })
     }
-  }
-  render(){
-    const {
-      history,
-      news: {
-        items,
-        categoryItems,
-      }
-    } = this.props
+    if(!didMountHomepage && authenticated){
+      fetchHomepage()
+    }
+    if(!authenticated){
+      history.push(routerPath.signin.root)
+    }
+  }, [categoryItems, items, changeNewsAttribute, didMountHomepage, authenticated, history,])
 
     return (
       <>
@@ -122,9 +125,10 @@ class Homepage extends React.Component {
         </GridList>
       </div>
       <BottomNavigation active={'home'}/>
+      <Loading open={isLoading}/>
       </>
     );
-  }
+  // }
 }
 const mapStateToProps = (state) => {
     return {
