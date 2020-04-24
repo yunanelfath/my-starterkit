@@ -12,17 +12,22 @@ import { connect } from 'react-redux'
 import {
   actionToProps as newsAction
 } from 'store/reducers/news/news.action'
+import {
+  actionToProps as authAction
+} from 'store/reducers/auth/auth.action'
 import HomepageCard from 'components/HomepageCard'
 import CategoryCard from 'components/CategoryCard'
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Loading from 'components/Loading'
+import { LOGOUT } from 'store/reducers/auth/auth.constant'
 
 const Homepage = (props) => {
   const [isLoading, setLoading] = useState(false)
     const {
       changeNewsAttribute,
+      changeAuthAttribute,
       history,
       auth: {
         authenticated
@@ -109,6 +114,7 @@ const Homepage = (props) => {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        marginBottom: '55px',
         overflow: 'hidden'
       }}>
         <GridList cellHeight={180}>
@@ -123,6 +129,15 @@ const Homepage = (props) => {
             )
           })}
         </GridList>
+        <div className="sign-out" onClick={()=>{
+          changeAuthAttribute({
+            key: false,
+            value: false,
+            type: LOGOUT
+          }).then(()=>{
+            history.push(routerPath.signin.root)
+          })
+        }}>Sign Out here</div>
       </div>
       <BottomNavigation active={'home'}/>
       <Loading open={isLoading}/>
@@ -136,6 +151,6 @@ const mapStateToProps = (state) => {
       news: state.news,
     }
 }
-const mapDispatchToProps = {...newsAction}
+const mapDispatchToProps = {...newsAction, ...authAction}
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Homepage))
 // export default Homepage;
