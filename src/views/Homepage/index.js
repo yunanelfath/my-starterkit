@@ -22,6 +22,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Loading from 'components/Loading'
 import { LOGOUT } from 'store/reducers/auth/auth.constant'
+import { LOGOUT as LOGOUT_NEWS } from 'store/reducers/news/news.constant'
 
 const Homepage = (props) => {
   const [isLoading, setLoading] = useState(false)
@@ -135,7 +136,14 @@ const Homepage = (props) => {
             value: false,
             type: LOGOUT
           }).then(()=>{
-            history.push(routerPath.signin.root)
+            changeNewsAttribute({
+              key: false,
+              value: false,
+              type: LOGOUT_NEWS
+            }).then(()=>{
+
+              history.push(routerPath.signin.root)
+            })
           })
         }}>Sign Out here</div>
       </div>
