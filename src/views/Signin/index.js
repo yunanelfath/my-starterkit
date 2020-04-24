@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 // import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 // import CssBaseline from '@material-ui/core/CssBaseline';
@@ -28,7 +28,8 @@ import {
 } from 'store/reducers/auth/auth.action'
 
 const SignIn = (props) => {
-  const [ isLoading, setLoading ] = React.useState(false)
+  const [ isLoading, setLoading ] = useState(false)
+  const loginForm = useRef(null)
   const {
     history,
     changeAuthAttribute
@@ -39,8 +40,8 @@ const SignIn = (props) => {
 
     setLoading(true)
     let payload = {
-      username: e.target.querySelector('input#username').value,
-      password: e.target.querySelector('input#password').value
+      username: loginForm.current.querySelector('input#username').value,
+      password: loginForm.current.querySelector('input#password').value
     }
     await apiPostLogin(payload).then((e)=>{
       setLoading(false)
@@ -65,7 +66,7 @@ const SignIn = (props) => {
           </Typography>
         </div>
 
-        <form noValidate onSubmit={handleSubmit}>
+        <form ref={loginForm} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
