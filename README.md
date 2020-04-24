@@ -1,4 +1,5 @@
 ## My starter React kit app
+Simple react redux starter kit to create new project with simple usefull package.
 after installing project you will get list of menu like below:
 
 ## Signin Page
