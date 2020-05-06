@@ -1,6 +1,8 @@
 import React from 'react';
+// import style1 from './App.module.css';
+import style from 'scss/homepage/style.module.scss'
+
 import './App.css';
-import style from 'scss/homepage/style.scss'
 
 import { Provider } from 'react-redux'
 import configureStore from 'store/Store';
@@ -10,6 +12,7 @@ import Route from 'router/Routes'
 
 const { persistor, store } = configureStore();
 console.log(style);
+// console.log(style1);
 function App() {
   return (
     <Provider store={store}>
