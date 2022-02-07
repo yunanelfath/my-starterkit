@@ -23,6 +23,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Loading from 'components/Loading'
 import { LOGOUT } from 'store/reducers/auth/auth.constant'
 import { LOGOUT as LOGOUT_NEWS } from 'store/reducers/news/news.constant'
+import NavbarMenuTop from 'components/NavbarMenuTop'
 
 const Homepage = (props) => {
   const [isLoading, setLoading] = useState(false)
@@ -81,6 +82,7 @@ const Homepage = (props) => {
 
     return (
       <>
+      <NavbarMenuTop/>
       <div className="search-box">
         <TextField
          id="input-with-icon-textfield"
